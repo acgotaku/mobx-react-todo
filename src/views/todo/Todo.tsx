@@ -32,10 +32,16 @@ const TodoView = () => {
     };
   }, []);
 
+  useEffect(() => {
+    todoList.toggleAll(finished);
+  }, [finished, todoList]);
+
   const addTodo = useCallback(() => {
     const newTodoValue = value.trim();
-    todoList.addTodo(newTodoValue);
-    setValue('');
+    if (newTodoValue) {
+      todoList.addTodo(newTodoValue);
+      setValue('');
+    }
   }, [todoList, value]);
 
   const keyDownInputHandler = useCallback(
@@ -55,6 +61,11 @@ const TodoView = () => {
     [todoList.activeTodos.length]
   );
 
+  const showClearButton = useMemo(
+    () => todoList.completedTodos.length > 0,
+    [todoList.completedTodos.length]
+  );
+
   const filteredTodos = useMemo(() => {
     switch (visibility) {
       case 'all':
@@ -68,7 +79,12 @@ const TodoView = () => {
         return todoList.allTodos;
       }
     }
-  }, [visibility, todoList]);
+  }, [
+    visibility,
+    todoList.allTodos,
+    todoList.activeTodos,
+    todoList.completedTodos
+  ]);
 
   return (
     <>
@@ -135,7 +151,14 @@ const TodoView = () => {
                   </a>
                 </li>
               </ul>
-              <button className="clear-completed">Clear completed</button>
+              {showClearButton && (
+                <button
+                  className="clear-completed"
+                  onClick={todoList.removeCompleted}
+                >
+                  Clear completed
+                </button>
+              )}
             </footer>
           </>
         )}

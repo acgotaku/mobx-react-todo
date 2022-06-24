@@ -19,6 +19,18 @@ export class TodoList {
     this.list.splice(this.list.indexOf(todo), 1);
   };
 
+  @action
+  removeCompleted = () => {
+    this.list = this.activeTodos;
+  };
+
+  @action
+  toggleAll = (value: boolean) => {
+    this.list.forEach(todo => {
+      todo.updateCompleted(value);
+    });
+  };
+
   @computed
   get showTodo(): boolean {
     return this.list.length > 0;

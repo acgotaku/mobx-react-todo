@@ -13,8 +13,8 @@ export class TodoItem {
   }
 
   @action
-  toggleCompleted = () => {
-    this.completed = !this.completed;
+  updateCompleted = (value: boolean) => {
+    this.completed = value;
   };
 
   @action
