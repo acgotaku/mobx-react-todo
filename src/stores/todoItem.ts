@@ -7,9 +7,12 @@ export class TodoItem {
   @observable title = '';
   @observable completed = false;
 
-  constructor(title: string) {
+  constructor(title: string, id = randomId(), completed = false) {
     makeObservable(this);
+
     this.title = title;
+    this.id = id;
+    this.completed = completed;
   }
 
   @action

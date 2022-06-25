@@ -32,10 +32,6 @@ const TodoView = () => {
     };
   }, []);
 
-  useEffect(() => {
-    todoList.toggleAll(finished);
-  }, [finished, todoList]);
-
   const addTodo = useCallback(() => {
     const newTodoValue = value.trim();
     if (newTodoValue) {
@@ -54,6 +50,15 @@ const TodoView = () => {
       }
     },
     [addTodo]
+  );
+
+  const toggleChangeHandler = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = event.target.checked;
+      setFinished(checked);
+      todoList.toggleAll(checked);
+    },
+    [todoList]
   );
 
   const activeTodoWord = useMemo(
@@ -109,7 +114,7 @@ const TodoView = () => {
                 className="toggle-all"
                 type="checkbox"
                 checked={finished}
-                onChange={event => setFinished(event.target.checked)}
+                onChange={toggleChangeHandler}
               />
               <label htmlFor="toggle-all"></label>
               <TodoList todos={filteredTodos} />

@@ -1,13 +1,27 @@
 import { action, computed, makeObservable, observable } from 'mobx';
+import { makePersistable } from 'mobx-persist-store';
 import { TodoItem } from './todoItem';
 
 export class TodoList {
   @observable.shallow list: TodoItem[] = [];
 
-  constructor(todos?: string[]) {
+  constructor() {
     makeObservable(this);
-    todos?.forEach(this.addTodo);
+    makePersistable(this, {
+      name: 'TodoStore',
+      properties: ['list'],
+      storage: window.localStorage
+    }).then(() => {
+      this.fromJS();
+    });
   }
+
+  @action
+  private fromJS = () => {
+    this.list = this.list.map(
+      todo => new TodoItem(todo.title, todo.id, todo.completed)
+    );
+  };
 
   @action
   addTodo = (text: string) => {
