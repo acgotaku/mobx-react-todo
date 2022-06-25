@@ -12,6 +12,7 @@ specifiers:
   eslint-plugin-react: ^7.30.1
   eslint-plugin-react-hooks: ^4.6.0
   mobx: ^6.6.0
+  mobx-persist-store: ^1.0.6
   mobx-react-lite: ^3.4.0
   prettier: ^2.7.1
   react: ^18.0.0
@@ -22,6 +23,7 @@ specifiers:
 dependencies:
   clsx: 1.1.1
   mobx: 6.6.0
+  mobx-persist-store: 1.0.6_mobx@6.6.0
   mobx-react-lite: 3.4.0_e86fe1e5ca80d35910065382bb68fbf2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1641,6 +1643,14 @@ packages:
     dependencies:
       brace-expansion: 1.1.11
     dev: true
+
+  /mobx-persist-store/1.0.6_mobx@6.6.0:
+    resolution: {integrity: sha512-GOV1/0H2bMQhsJKpwRrR74c+B7wl9sOSwMeq7ed1PPsIanW/aYVj0RaQDqVOTYKJfeLV9wNGnWk0EATWprNluw==}
+    peerDependencies:
+      mobx: '*'
+    dependencies:
+      mobx: 6.6.0
+    dev: false
 
   /mobx-react-lite/3.4.0_e86fe1e5ca80d35910065382bb68fbf2:
     resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
