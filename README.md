@@ -2,7 +2,7 @@
 
 ## Online demo
 
-[TodoMVC](https://codesandbox.io/s/vibrant-yonath-4sx1cl?file=/src/views/todo/Todo.tsx)
+[TodoMVC](https://codesandbox.io/s/github/acgotaku/mobx-react-todo)
 
 ## Quick start
 
